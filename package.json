@@ -1,0 +1,22 @@
+{
+  "name": "danieljs",
+  "version": "0.1.0",
+  "description": "A simple thing I made",
+  "main": " ",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": " "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dko1905/danieljs.git"
+  },
+  "author": "Daniel Florescu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dko1905/danieljs/issues"
+  },
+  "homepage": "https://github.com/Dko1905/danieljs#readme"
+}
