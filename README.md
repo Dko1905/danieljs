@@ -1,2 +1,2 @@
 # danieljs
-Somthing 
+WIP, maybe a dead project.
