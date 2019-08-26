@@ -20,12 +20,18 @@ line = (x1, y1, x2, y2, color = '#000000') => {
   ctx.stroke();
 }
 
-function circle(x, y, r, color = '#000000'){
+function circle(x, y, r, color = '#000000', fill = false){
   ctx.beginPath();
   ctx.arc(x,y,r,0*Math.PI,1.5*Math.PI);
   ctx.closePath();
-  ctx.strokeStyle = color;
-  ctx.stroke();
+  if(fill){
+    ctx.fillStyle = color;
+    ctx.fill();
+  }
+  else{
+    ctx.strokeStyle = color;
+    ctx.stroke();
+  }
 }
 
 pixel = (a, b, color = '#000000') => {
@@ -35,7 +41,7 @@ function clear() {
   ctx.clearRect(0,0,c.width,c.height)
 }
 
-square = (width, height, degrees, color = "#000000", useDegrees = false) => {
+square = (width, height, degrees, color = "#000000", useDegrees = false, fill = false) => {
   ctx.translate(c.width / 2, c.height / 2);
 
   if(useDegrees)
@@ -44,9 +50,15 @@ square = (width, height, degrees, color = "#000000", useDegrees = false) => {
     ctx.rotate(degrees) // Use radions;
   ctx.beginPath();
   ctx.rect(width / -2, height / -2, width, height);
-  ctx.strokeStyle = color
   ctx.closePath();
-  ctx.stroke();
+  if(fill){
+    ctx.fillStyle = color;
+    ctx.fill();
+  }    
+  else{
+    ctx.strokeStyle = color;
+    ctx.stroke();
+  }
   ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
