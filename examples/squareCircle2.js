@@ -1,39 +1,36 @@
 init();
 
-var index = 0, index2 = 0;
-var mode = 0;
-var size = 100;
+var rotation = 0;
+var sizeDifference = 0.5;
+let drawRectangle = true;
 
-function draw(event) {
-	var rectWidth = 0;
-	var rectHeight = 0;
+let squareList = [
+	{ x: 0, y: 0 }, { x: 1, y: 0 },
+	{ x: 0, y: 1 }, { x: 1, y: 1 }
+];
+let originalSquareList = [...squareList];
 
-	if(mode === 1){
-		rectWidth = (100+180)+(180-index);
-		rectHeight = (100+180)+(180-index);
-		square(rectWidth, rectHeight, index/100)
-		console.log('yes');
+function custemRectangle(squareList, scale, moveX = 0, moveY = 0) {
+	line(squareList[0].x * scale + moveX, squareList[0].y * scale + moveY, squareList[1].x * scale + moveX, squareList[1].y * scale + moveY);
+	line(squareList[1].x * scale + moveX, squareList[1].y * scale + moveY, squareList[3].x * scale + moveX, squareList[3].y * scale + moveY);
+	line(squareList[3].x * scale + moveX, squareList[3].y * scale + moveY, squareList[2].x * scale + moveX, squareList[2].y * scale + moveY);
+	line(squareList[2].x * scale + moveX, squareList[2].y * scale + moveY, squareList[0].x * scale + moveX, squareList[0].y * scale + moveY);
+}
+
+function editCords(squareList, sizeDifference) {
+	function editCord(x1, y1, x2, y2, sizeDifference) {
 		
 	}
-	else{
-		rectWidth = size+index;
-		rectHeight = size+index;
-		square(rectWidth, rectHeight, index/100)
-	}
-	console.log(index);
-	console.log(mode);
-	
-	
-	if(index > 180){
-		mode = 1;
-	}
-	index+= 10;
+
+	squareList[0] = editCord(squareList[0].x, squareList[0].y, squareList[1].x, squareList[1].y, sizeDifference);
+	return squareList;
 }
 
-function updateOnMouseMove(event){
-	draw(event);
-}
+function draw(event) {
 
-function onClick(){
-	//draw(event);
-}
+
+	if (drawRectangle)
+		custemRectangle(squareList, 100, 700, 300)
+
+	squareList = editCords(squareList, sizeDifference);
+}	

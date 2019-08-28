@@ -3,12 +3,19 @@ var ctx;
 
 
 
-function init(widthScale = 1, heightScale = 1){
+function init(widthScale = 1, heightScale = 1) {
   c = document.getElementById('c');
   ctx = c.getContext("2d");
 
   c.setAttribute('width', window.innerWidth * widthScale);
   c.setAttribute('height', window.innerHeight * heightScale)
+}
+
+function getDistanceBetweenPoints(x1, y1, x2, y2) {
+  var a = x1 - x2;
+  var b = y1 - y2;
+
+  return Math.sqrt( a*a + b*b ); // https://stackoverflow.com/questions/20916953/get-distance-between-two-points-in-canvas
 }
 
 line = (x1, y1, x2, y2, color = '#000000') => {
@@ -20,42 +27,42 @@ line = (x1, y1, x2, y2, color = '#000000') => {
   ctx.stroke();
 }
 
-function circle(x, y, r, color = '#000000', fill = false){
+function circle(x, y, r, color = '#000000', fill = false) {
   ctx.beginPath();
-  ctx.arc(x,y,r,0*Math.PI,1.5*Math.PI);
+  ctx.arc(x, y, r, 0 * Math.PI, 1.5 * Math.PI);
   ctx.closePath();
-  if(fill){
+  if (fill) {
     ctx.fillStyle = color;
     ctx.fill();
   }
-  else{
+  else {
     ctx.strokeStyle = color;
     ctx.stroke();
   }
 }
 
 pixel = (a, b, color = '#000000') => {
-  line(a, b, a+1, b+1, color)
+  line(a, b, a + 1, b + 1, color)
 }
 function clear() {
-  ctx.clearRect(0,0,c.width,c.height)
+  ctx.clearRect(0, 0, c.width, c.height)
 }
 
 square = (width, height, degrees, color = "#000000", useDegrees = false, fill = false) => {
   ctx.translate(c.width / 2, c.height / 2);
 
-  if(useDegrees)
-    ctx.rotate((degrees * Math.PI / 180)%360);
+  if (useDegrees)
+    ctx.rotate((degrees * Math.PI / 180) % 360);
   else
     ctx.rotate(degrees) // Use radions;
   ctx.beginPath();
   ctx.rect(width / -2, height / -2, width, height);
   ctx.closePath();
-  if(fill){
+  if (fill) {
     ctx.fillStyle = color;
     ctx.fill();
-  }    
-  else{
+  }
+  else {
     ctx.strokeStyle = color;
     ctx.stroke();
   }
@@ -79,17 +86,17 @@ function rgbToHex(r, g, b) {
   return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
 
-function HSLToHex(h,s,l) {
-  
+function HSLToHex(h, s, l) {
+
   s /= 100;
   l /= 100;
 
   let c = (1 - Math.abs(2 * l - 1)) * s,
-      x = c * (1 - Math.abs((h / 60) % 2 - 1)),
-      m = l - c/2,
-      r = 0,
-      g = 0,
-      b = 0;
+    x = c * (1 - Math.abs((h / 60) % 2 - 1)),
+    m = l - c / 2,
+    r = 0,
+    g = 0,
+    b = 0;
 
   if (0 <= h && h < 60) {
     r = c; g = x; b = 0;
