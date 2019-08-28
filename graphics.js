@@ -31,7 +31,8 @@ function circle(x, y, r, color = '#000000', fill = false) {
   ctx.beginPath();
   ctx.arc(x, y, r, 0 * Math.PI, 1.5 * Math.PI);
   ctx.closePath();
-  if (fill) {
+  
+  if (fill==true) {
     ctx.fillStyle = color;
     ctx.fill();
   }
@@ -48,7 +49,11 @@ function clear() {
   ctx.clearRect(0, 0, c.width, c.height)
 }
 
-square = (width, height, degrees, color = "#000000", useDegrees = false, fill = false) => {
+square = () => {
+  
+}
+
+squareRotate = (width, height, degrees, color = "#000000", useDegrees = false, fill = false) => {
   ctx.translate(c.width / 2, c.height / 2);
 
   if (useDegrees)
